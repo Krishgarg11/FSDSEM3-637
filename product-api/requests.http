@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:3000
+
+### GET all products
+GET {{baseUrl}}/products
+
+### GET one product
+GET {{baseUrl}}/products/1
+
+### POST a new product
+POST {{baseUrl}}/products
+Content-Type: application/json
+
+{
+  "name": "Wireless Keyboard",
+  "price": 49.99,
+  "category": "Electronics",
+  "stock": 25
+}
+
+### PUT a complete product
+PUT {{baseUrl}}/products/1
+Content-Type: application/json
+
+{
+  "name": "Updated Product One",
+  "price": 199.99,
+  "category": "Accessories",
+  "stock": 40
+}
+
+### PATCH only the price
+PATCH {{baseUrl}}/products/1
+Content-Type: application/json
+
+{
+  "price": 179.99
+}
+
+### DELETE a product
+DELETE {{baseUrl}}/products/101
+
+### GET the deleted product (should return 404)
+GET {{baseUrl}}/products/101
