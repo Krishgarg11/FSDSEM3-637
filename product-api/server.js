@@ -1,7 +1,16 @@
-const express = require("express");
+import express from "express";
+import path from "path";
+import { fileURLToPath, pathToFileURL } from "url";
 
 const app = express();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.json());
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "..", "index.html"));
+});
 
 let products = [];
 let nextProductId = 1;
@@ -167,10 +176,10 @@ app.delete("/products/:id", (req, res) => {
     });
 });
 
-if (require.main === module) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
     app.listen(3000, () => {
         console.log("Server running on http://localhost:3000");
     });
 }
 
-module.exports = { app, products };
+export { app, products };
