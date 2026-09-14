@@ -8,37 +8,15 @@ const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 
+// Simple homepage for browser testing
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "..", "index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 let products = [];
-let nextProductId = 1;
+let nextId = 1;
 
-const productFields = ["name", "price", "category", "stock"];
-
-function isValidProductFields(product) {
-    return typeof product.name === "string" && product.name.trim() !== ""
-        && typeof product.category === "string" && product.category.trim() !== ""
-        && typeof product.price === "number" && Number.isFinite(product.price) && product.price >= 0
-        && Number.isInteger(product.stock) && product.stock >= 0;
-}
-
-function parseProductId(value) {
-    const id = Number(value);
-    return Number.isInteger(id) && id > 0 ? id : null;
-}
-
-function findProductId(req, res) {
-    const id = parseProductId(req.params.id);
-    if (id === null) {
-        res.status(400).json({ message: "Product ID must be a positive integer" });
-        return null;
-    }
-    return id;
-}
-
-// Creating 100 products
+// Create 100 sample products
 for (let i = 1; i <= 100; i++) {
     products.push({
         id: i,
@@ -48,73 +26,91 @@ for (let i = 1; i <= 100; i++) {
         stock: 10 + i
     });
 }
-nextProductId = products.length + 1;
+
+nextId = products.length + 1;
+
+function checkProductData(product) {
+    return product &&
+        typeof product.name === "string" && product.name.trim() !== "" &&
+        typeof product.category === "string" && product.category.trim() !== "" &&
+        typeof product.price === "number" && Number.isFinite(product.price) && product.price >= 0 &&
+        Number.isInteger(product.stock) && product.stock >= 0;
+}
+
+function getProductIdFromRoute(req) {
+    const id = Number(req.params.id);
+    return Number.isInteger(id) && id > 0 ? id : null;
+}
 
 // GET all products
 app.get("/products", (req, res) => {
     res.json(products);
 });
 
-// GET product by ID
+// GET one product by ID
 app.get("/products/:id", (req, res) => {
-    const id = findProductId(req, res);
-    if (id === null) return;
-    const product = products.find(p => p.id === id);
+    const id = getProductIdFromRoute(req);
+
+    if (id === null) {
+        return res.status(400).json({ message: "ID must be a valid positive number" });
+    }
+
+    const product = products.find(item => item.id === id);
 
     if (!product) {
-        return res.status(404).json({
-            message: "Product not found"
-        });
+        return res.status(404).json({ message: "Product not found" });
     }
 
     res.json(product);
 });
 
-// POST - Add new product
+// POST - create new product
 app.post("/products", (req, res) => {
-    if (!isValidProductFields(req.body)) {
+    const newProduct = req.body;
+
+    if (!checkProductData(newProduct)) {
         return res.status(400).json({
-            message: "name and category must be non-empty strings; price must be a non-negative number; stock must be a non-negative integer"
+            message: "Please send valid name, category, price and stock"
         });
     }
 
-    const newProduct = {
-        id: nextProductId++,
-        name: req.body.name.trim(),
-        price: req.body.price,
-        category: req.body.category.trim(),
-        stock: req.body.stock
+    const productToSave = {
+        id: nextId++,
+        name: newProduct.name.trim(),
+        category: newProduct.category.trim(),
+        price: newProduct.price,
+        stock: newProduct.stock
     };
 
-    products.push(newProduct);
+    products.push(productToSave);
 
     res.status(201).json({
         message: "Product added successfully",
-        product: newProduct
+        product: productToSave
     });
 });
 
-// PUT - Update complete product
+// PUT - replace full product details
 app.put("/products/:id", (req, res) => {
-    const id = findProductId(req, res);
-    if (id === null) return;
-    const product = products.find(p => p.id === id);
+    const id = getProductIdFromRoute(req);
 
-    if (!product) {
-        return res.status(404).json({
-            message: "Product not found"
-        });
+    if (id === null) {
+        return res.status(400).json({ message: "ID must be a valid positive number" });
     }
 
-    if (!isValidProductFields(req.body)) {
-        return res.status(400).json({
-            message: "PUT requires name, price, category, and stock with valid values"
-        });
+    const product = products.find(item => item.id === id);
+
+    if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+    }
+
+    if (!checkProductData(req.body)) {
+        return res.status(400).json({ message: "Please provide all valid product fields" });
     }
 
     product.name = req.body.name.trim();
-    product.price = req.body.price;
     product.category = req.body.category.trim();
+    product.price = req.body.price;
     product.stock = req.body.stock;
 
     res.json({
@@ -123,56 +119,63 @@ app.put("/products/:id", (req, res) => {
     });
 });
 
-// PATCH - Update selected fields
+// PATCH - update only some fields
 app.patch("/products/:id", (req, res) => {
-    const id = findProductId(req, res);
-    if (id === null) return;
-    const product = products.find(p => p.id === id);
+    const id = getProductIdFromRoute(req);
 
-    if (!product) {
-        return res.status(404).json({
-            message: "Product not found"
-        });
+    if (id === null) {
+        return res.status(400).json({ message: "ID must be a valid positive number" });
     }
 
-    const updates = Object.keys(req.body);
-    if (updates.length === 0 || updates.some(field => !productFields.includes(field))) {
-        return res.status(400).json({ message: "PATCH must contain one or more product fields only" });
+    const product = products.find(item => item.id === id);
+
+    if (!product) {
+        return res.status(404).json({ message: "Product not found" });
+    }
+
+    const allowedFields = ["name", "price", "category", "stock"];
+    const sentFields = Object.keys(req.body);
+
+    if (sentFields.length === 0 || sentFields.some(field => !allowedFields.includes(field))) {
+        return res.status(400).json({ message: "Only name, price, category, and stock can be updated" });
     }
 
     const updatedProduct = { ...product, ...req.body };
-    if (!isValidProductFields(updatedProduct)) {
-        return res.status(400).json({ message: "PATCH contains invalid product values" });
+
+    if (!checkProductData(updatedProduct)) {
+        return res.status(400).json({ message: "Updated product values are invalid" });
     }
 
-    Object.assign(product, updatedProduct, {
-        name: updatedProduct.name.trim(),
-        category: updatedProduct.category.trim()
-    });
+    product.name = updatedProduct.name.trim();
+    product.category = updatedProduct.category.trim();
+    product.price = updatedProduct.price;
+    product.stock = updatedProduct.stock;
 
     res.json({
-        message: "Product partially updated",
+        message: "Product updated partially",
         product: product
     });
 });
 
-// DELETE product
+// DELETE - remove product
 app.delete("/products/:id", (req, res) => {
-    const id = findProductId(req, res);
-    if (id === null) return;
-    const index = products.findIndex(p => p.id === id);
+    const id = getProductIdFromRoute(req);
 
-    if (index === -1) {
-        return res.status(404).json({
-            message: "Product not found"
-        });
+    if (id === null) {
+        return res.status(400).json({ message: "ID must be a valid positive number" });
     }
 
-    const deletedProduct = products.splice(index, 1);
+    const index = products.findIndex(item => item.id === id);
+
+    if (index === -1) {
+        return res.status(404).json({ message: "Product not found" });
+    }
+
+    const deletedProduct = products.splice(index, 1)[0];
 
     res.json({
         message: "Product deleted successfully",
-        product: deletedProduct[0]
+        product: deletedProduct
     });
 });
 

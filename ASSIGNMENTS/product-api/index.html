@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product API Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #1d4ed8;
+        }
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #1e40af;
+        }
+        #products {
+            margin-top: 20px;
+            list-style: none;
+            padding: 0;
+        }
+        #products li {
+            padding: 10px 12px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            background: #f9fafb;
+        }
+        .status {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product API Demo</h1>
+        <button id="loadBtn">Load Products</button>
+        <div id="status" class="status">Ready</div>
+        <ul id="products"></ul>
+    </div>
+
+    <script>
+        const loadBtn = document.getElementById('loadBtn');
+        const productList = document.getElementById('products');
+        const status = document.getElementById('status');
+
+        async function loadProducts() {
+            try {
+                status.textContent = 'Loading products...';
+                const response = await fetch('http://localhost:3000/products');
+                const products = await response.json();
+
+                productList.innerHTML = '';
+                products.slice(0, 10).forEach(product => {
+                    const li = document.createElement('li');
+                    li.textContent = `${product.id}. ${product.name} - ₹${product.price} - ${product.category} - stock: ${product.stock}`;
+                    productList.appendChild(li);
+                });
+
+                status.textContent = `Showing ${products.length} products`;
+            } catch (error) {
+                status.textContent = 'API not running. Start the server first.';
+                status.style.color = 'red';
+            }
+        }
+
+        loadBtn.addEventListener('click', loadProducts);
+        loadProducts();
+    </script>
+</body>
+</html>
