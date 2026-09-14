@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath, pathToFileURL } from "url";
 
 const app = express();
+const port = 3001;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -180,8 +181,8 @@ app.delete("/products/:id", (req, res) => {
 });
 
 if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
-    app.listen(3000, () => {
-        console.log("Server running on http://localhost:3000");
+    app.listen(port, () => {
+        console.log(`Product API running on http://localhost:${port}`);
     });
 }
 

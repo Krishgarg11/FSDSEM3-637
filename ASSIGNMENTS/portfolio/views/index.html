@@ -1,66 +1,57 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Krish Garg - second-year B.Tech Computer Science Engineering student interested in Python and data analytics.">
-  <title>Krish Garg | CSE Student</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/css/style.css">
+  <meta name="description" content="Portfolio of Krish Garg, a first-year B.Tech CSE student.">
+  <title>Krish Garg | B.Tech CSE Student</title>
+  <link rel="stylesheet" href="/css/basic-style.css">
 </head>
 <body>
-  <div class="background-grid" aria-hidden="true"></div>
-  <header class="navbar">
-    <a class="brand" href="#home" aria-label="Krish Garg home"><span>KG</span> / portfolio</a>
-    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span></button>
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#education">Education</a><a href="#achievements">Achievements</a><a href="#contact">Contact</a>
+  <header class="site-header">
+    <nav class="navbar container" aria-label="Main navigation">
+      <a class="brand" href="#home">Krish <span>Garg</span></a>
+      <div class="nav-links"><a href="#home">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
     </nav>
-    <a class="nav-resume" href="/resume">Resume <span>↗</span></a>
   </header>
-
   <main>
-    <section class="hero section" id="home">
-      <div class="hero-copy reveal">
-        <p class="kicker"><span class="pulse"></span> Second-year CSE student · 2025—2029</p>
-        <h1>Hi, I'm<br><em>Krish Garg.</em></h1>
-        <p class="hero-role">Computer Science<br>Engineering Student</p>
-        <p class="hero-description">A second-year Computer Science student interested in Python and data analytics. I enjoy turning curiosity into practical projects and improving my problem-solving skills through code.</p>
-        <div class="hero-actions"><a class="button button-primary" href="#projects">View projects <span>↓</span></a><a class="button button-quiet" href="#contact">Contact me <span>↗</span></a></div>
+    <section id="home" class="hero"><div class="container hero-layout">
+      <div class="hero-copy">
+        <p class="eyebrow">First-Year CSE Student · ABES Engineering College</p>
+        <h1>Hi, I’m <span>Krish Garg.</span></h1>
+        <p class="hero-role">B.Tech CSE Student | Python &amp; C++ | Data &amp; AI Enthusiast</p>
+        <p class="hero-description">I enjoy solving programming problems, working with data, and building practical projects while continuously learning new technologies.</p>
+        <div class="hero-actions"><a class="button primary" href="#projects">View My Projects <span>→</span></a><a class="button secondary" href="#contact">Contact Me</a></div>
       </div>
-      <div class="hero-visual reveal delay-1" aria-label="Decorative code illustration">
-        <div class="code-window"><div class="window-bar"><i></i><i></i><i></i><span>krish.py</span></div><pre><code><b>def</b> <strong>keep_learning</strong>():
-    skills = [
-      <mark>"Python"</mark>, <mark>"AI/ML"</mark>,
-      <mark>"Data"</mark>, <mark>"Problem solving"</mark>
-    ]
-    <b>return</b> build(skills)
-
-<span class="comment"># progress > perfection</span></code></pre></div>
-        <div class="visual-note note-one">01<br><span>curiosity</span></div><div class="visual-note note-two">&lt;/&gt;<br><span>build</span></div>
+      <aside class="student-card" aria-label="Student profile summary"><span class="card-dot"></span><p class="code-label">student_profile.json</p><div class="profile-mark">KG</div><p><strong>Currently learning</strong><br>Programming, data analysis<br>&amp; machine learning foundations.</p><div class="profile-tags"><span>Python</span><span>C++</span><span>Curious learner</span></div></aside>
+    </div></section>
+    <section id="about" class="section"><div class="container two-column">
+      <div><p class="section-kicker">01 / About</p><h2>Building a strong <span>foundation.</span></h2></div>
+      <div class="about-copy"><p>I am a B.Tech CSE student at ABES Engineering College, currently building my foundation in programming, Data Structures and Algorithms, Python, data analysis and Machine Learning. I enjoy learning by building practical projects and solving coding problems.</p><div class="quick-facts"><div><strong>B.Tech CSE</strong><span>Course</span></div><div><strong>2029</strong><span>Graduation year</span></div><div><strong>1st Year</strong><span>Current level</span></div></div></div>
+    </div></section>
+    <section id="skills" class="section section-alt"><div class="container">
+      <div class="section-heading"><div><p class="section-kicker">02 / Skills</p><h2>What I’m <span>learning &amp; using.</span></h2></div><p>Growing through practice,<br>projects, and curiosity.</p></div>
+      <div class="skills-grid">
+        <article class="skill-card"><span>01</span><h3>Programming</h3><div class="badges"><b>Python</b><b>C++</b></div></article>
+        <article class="skill-card"><span>02</span><h3>Data &amp; Analytics</h3><div class="badges"><b>NumPy</b><b>Pandas</b><b>Matplotlib</b><b>SQL</b><b>Data Analysis</b></div></article>
+        <article class="skill-card"><span>03</span><h3>AI / Machine Learning</h3><div class="badges"><b>Machine Learning</b><b>Scikit-learn</b><b>AI / RAG fundamentals</b></div></article>
+        <article class="skill-card"><span>04</span><h3>Development &amp; Tools</h3><div class="badges"><b>HTML</b><b>CSS</b><b>Node.js</b><b>Express.js</b><b>REST APIs</b></div></article>
+        <article class="skill-card"><span>05</span><h3>Problem Solving</h3><div class="badges"><b>Data Structures &amp; Algorithms</b><b>LeetCode</b><b>CodeChef</b><b>Git &amp; GitHub</b><b>Kaggle</b></div></article>
       </div>
-    </section>
-
-    <section class="intro-strip"><div class="section section-strip"><span class="strip-number">01 / 07</span><p>My current focus is simple: understand the fundamentals deeply, build useful things, and keep improving one problem at a time.</p></div></section>
-
-    <section class="section about" id="about">
-      <div class="section-label reveal"><span>02</span><p>About me</p></div>
-      <div class="about-content reveal delay-1"><h2>Learning in public,<br><em>building with intent.</em></h2><p>I'm Krish Garg, a second-year B.Tech Computer Science Engineering student at ABES Engineering College. My main interests are Python and data analytics.</p><p>I enjoy learning through practical projects and building a strong foundation in programming, databases, and problem solving.</p><div class="about-facts"><div><strong>01</strong><span>Python learner</span></div><div><strong>02</strong><span>Data enthusiast</span></div><div><strong>03</strong><span>Problem solver</span></div></div></div>
-    </section>
-
-    <section class="section skills" id="skills"><div class="section-label reveal"><span>03</span><p>Skills in progress</p></div><div class="skills-content"><h2 class="reveal">Tools I'm<br><em>getting fluent with.</em></h2><div class="skill-groups"><div class="skill-group reveal"><span class="skill-index">01</span><h3>Programming</h3><div class="tags"><span>Python</span><span>C++</span></div></div><div class="skill-group reveal delay-1"><span class="skill-index">02</span><h3>Data</h3><div class="tags"><span>SQL</span><span>Data Analytics</span></div></div></div></div></section>
-
-    <section class="section projects" id="projects"><div class="section-heading reveal"><div class="section-label"><span>04</span><p>Selected projects</p></div><p class="section-aside">A few things I'm making<br>while I learn.</p></div><div class="project-list"><article class="project-card featured reveal"><div class="project-number">01</div><div class="project-info"><p class="project-type">AI / RAG · In progress</p><h3>Yojana Saathi</h3><p>AI/RAG-based document guidance project designed to help users understand required documents and scheme-related information.</p><div class="project-tags"><span>Python</span><span>FastAPI</span><span>RAG</span><span>JSON</span></div></div><div class="project-links"><a href="#" data-placeholder="true">GitHub <span>↗</span></a><a href="#" data-placeholder="true">Live demo <span>↗</span></a></div></article><article class="project-card reveal"><div class="project-number">02</div><div class="project-info"><p class="project-type">Node.js · Express.js</p><h3>Product REST API</h3><p>A beginner-friendly CRUD API for managing products with validation and clean REST endpoints.</p><div class="project-tags"><span>Node.js</span><span>Express</span><span>REST</span></div></div><div class="project-links"><a href="#" data-placeholder="true">GitHub <span>↗</span></a><a href="#" data-placeholder="true">Live demo <span>↗</span></a></div></article><article class="project-card reveal"><div class="project-number">03</div><div class="project-info"><p class="project-type">Core JavaScript</p><h3>Node Modules Practice</h3><p>Experiments with events, file systems, HTTP servers, and asynchronous JavaScript.</p><div class="project-tags"><span>JavaScript</span><span>Node.js</span><span>Core modules</span></div></div><div class="project-links"><a href="#" data-placeholder="true">GitHub <span>↗</span></a><a href="#" data-placeholder="true">Live demo <span>↗</span></a></div></article></div></section>
-
-    <section class="section education" id="education"><div class="section-label reveal"><span>05</span><p>Education</p></div><div class="timeline reveal delay-1"><div class="timeline-line"></div><div class="timeline-item"><span class="timeline-year">2025—2029</span><div><h3>B.Tech — Computer Science Engineering</h3><p>ABES Engineering College</p><span class="timeline-status">Currently studying</span></div></div></div></section>
-
-    <section class="section achievements" id="achievements"><div class="section-label reveal"><span>06</span><p>Achievements / learning</p></div><div class="achievement-grid"><article class="achievement-card reveal"><span>01</span><h3>Kaggle Python</h3><p>Learning Python through Kaggle's beginner-friendly course material.</p></article><article class="achievement-card reveal delay-1"><span>02</span><h3>DSA practice</h3><p>Building consistency with data structures and algorithm problems.</p></article><article class="achievement-card reveal"><span>03</span><h3>Problem solving</h3><p>Practising coding problems to improve logic and implementation.</p></article><article class="achievement-card reveal delay-1"><span>04</span><h3>Data learning</h3><p>Exploring Python, data analytics, and visualisation fundamentals.</p></article></div></section>
-
-    <section class="section contact" id="contact"><div class="contact-copy reveal"><div class="section-label"><span>07</span><p>Get in touch</p></div><h2>Have a question<br>or an idea?<br><em>Say hello.</em></h2><div class="contact-details"><a href="mailto:krishgarg045@gmail.com">krishgarg045@gmail.com</a><a href="tel:+918937983861">+91 8937983861</a><a href="https://github.com/Krishgarg11" target="_blank" rel="noreferrer">github.com/Krishgarg11</a></div></div><form class="contact-form reveal delay-1" id="contact-form"><label>Name<input name="name" type="text" placeholder="Your name" required></label><label>Email<input name="email" type="email" placeholder="you@example.com" required></label><label>Message<textarea name="message" rows="5" placeholder="What would you like to talk about?" required></textarea></label><button class="button button-primary" type="submit">Send message <span>↗</span></button><p class="form-message" role="status"></p></form></section>
+    </div></section>
+    <section id="projects" class="section"><div class="container">
+      <div class="section-heading"><div><p class="section-kicker">03 / Projects</p><h2>Things I’ve <span>worked on.</span></h2></div><p>Practical projects while<br>continuing to learn.</p></div>
+      <div class="projects-grid">
+        <article class="project-card featured"><p class="project-number">01</p><div><p class="project-category">AI PROJECT</p><h3>Yojana Saathi</h3><p>An AI-assisted government scheme guidance project that helps users understand government schemes, eligibility-related information and required documents.</p><p class="role"><strong>My role:</strong> AI + RAG + Document Guidance</p><div class="badges"><b>Python</b><b>FastAPI</b><b>RAG</b><b>JSON</b></div></div><a href="#" class="project-link">View Project →</a></article>
+        <article class="project-card"><p class="project-number">02</p><div><p class="project-category">MACHINE LEARNING</p><h3>House Price Prediction</h3><p>A Machine Learning project that predicts house prices based on relevant property features. It demonstrates data preprocessing, data analysis, feature handling, model training and prediction.</p><div class="badges"><b>Python</b><b>Pandas</b><b>NumPy</b><b>Matplotlib</b><b>Scikit-learn</b></div></div><a href="#" class="project-link">View Project →</a></article>
+        <article class="project-card"><p class="project-number">03</p><div><p class="project-category">BACKEND PROJECT</p><h3>Product REST API</h3><p>A REST API project for managing product data with CRUD operations: GET, POST, PUT and DELETE.</p><div class="badges"><b>Node.js</b><b>Express.js</b><b>REST API</b></div></div><a href="http://localhost:3001" class="project-link">View Project →</a></article>
+        <article class="project-card"><p class="project-number">04</p><div><p class="project-category">CONTINUOUS PRACTICE</p><h3>DSA &amp; Problem Solving</h3><p>Regular practice of Data Structures and Algorithms using C++, with problem solving practice on LeetCode and CodeChef. Currently learning arrays, hashing, recursion, sorting, stack &amp; queue, and basic problem solving.</p><div class="badges"><b>C++</b><b>LeetCode</b><b>CodeChef</b></div></div><a href="#" class="project-link">View Project →</a></article>
+        <article class="project-card"><p class="project-number">05</p><div><p class="project-category">DATA PRACTICE</p><h3>Python Data Analysis</h3><p>Learning and practicing Python data analysis using real datasets and hands-on exercises.</p><div class="badges"><b>Python</b><b>NumPy</b><b>Pandas</b><b>Matplotlib</b><b>Kaggle</b></div></div><a href="#" class="project-link">View Project →</a></article>
+      </div>
+    </div></section>
+    <section class="learning"><div class="container learning-layout"><div><p class="section-kicker">04 / Current Learning</p><h2>What I’m Currently <span>Learning.</span></h2><p>Currently focused on strengthening my fundamentals and building practical projects.</p></div><ul><li>Python Automation</li><li>Data Analysis</li><li>SQL</li><li>Data Structures &amp; Algorithms</li><li>Machine Learning Foundations</li></ul></div></section>
+    <section id="contact" class="section"><div class="container contact-layout"><div><p class="section-kicker">05 / Contact</p><h2>Let’s <span>connect.</span></h2><p class="contact-text">I’m always open to learning opportunities, student collaborations, and conversations about technology.</p></div><address><a href="mailto:krishgarg045@gmail.com">krishgarg045@gmail.com</a><a href="tel:+918037938801">+91 8037938801</a><div class="socials"><a href="#">GitHub ↗</a><a href="#">LinkedIn ↗</a></div></address></div></section>
   </main>
-  <footer class="footer"><div><strong>KG</strong><span>© <span id="year"></span> Krish Garg</span></div><span>Made with curiosity + code.</span><a href="#home">Back to top ↑</a></footer>
-  <script src="/js/script.js"></script>
+  <footer><div class="container"><span>© 2026 Krish Garg. Built with HTML, CSS &amp; Express.js.</span><a href="#home">Back to top ↑</a></div></footer>
 </body>
 </html>

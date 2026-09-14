@@ -68,7 +68,7 @@
         async function loadProducts() {
             try {
                 status.textContent = 'Loading products...';
-                const response = await fetch('http://localhost:3000/products');
+                const response = await fetch('/products');
                 const products = await response.json();
 
                 productList.innerHTML = '';
