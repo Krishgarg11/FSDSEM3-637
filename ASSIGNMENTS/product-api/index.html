@@ -66,27 +66,31 @@
         const status = document.getElementById('status');
 
         async function loadProducts() {
+            window.location.href = '/api/products';
+        }
+
+        async function showProductPreview() {
             try {
-                status.textContent = 'Loading products...';
-                const response = await fetch('/products');
-                const products = await response.json();
+                status.textContent = 'Loading product preview...';
+                const response = await fetch('/api/products');
+                const result = await response.json();
 
                 productList.innerHTML = '';
-                products.slice(0, 10).forEach(product => {
+                result.products.slice(0, 10).forEach(product => {
                     const li = document.createElement('li');
                     li.textContent = `${product.id}. ${product.name} - ₹${product.price} - ${product.category} - stock: ${product.stock}`;
                     productList.appendChild(li);
                 });
 
-                status.textContent = `Showing ${products.length} products`;
+                status.textContent = `Showing 10 of ${result.total} products`;
             } catch (error) {
-                status.textContent = 'API not running. Start the server first.';
+                status.textContent = 'Could not load the product preview.';
                 status.style.color = 'red';
             }
         }
 
         loadBtn.addEventListener('click', loadProducts);
-        loadProducts();
+        showProductPreview();
     </script>
 </body>
 </html>

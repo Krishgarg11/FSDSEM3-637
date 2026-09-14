@@ -48,6 +48,15 @@ app.get("/products", (req, res) => {
     res.json(products);
 });
 
+// GET all products in a browser-friendly API response
+app.get("/api/products", (req, res) => {
+    res.json({
+        success: true,
+        total: products.length,
+        products: products
+    });
+});
+
 // GET one product by ID
 app.get("/products/:id", (req, res) => {
     const id = getProductIdFromRoute(req);
