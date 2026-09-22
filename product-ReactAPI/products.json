@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Wireless Keyboard",
+    "category": "Electronics",
+    "price": 1499,
+    "stock": 25
+  },
+  {
+    "id": 2,
+    "name": "Bluetooth Mouse",
+    "category": "Electronics",
+    "price": 899,
+    "stock": 40
+  },
+  {
+    "id": 3,
+    "name": "Cotton T-Shirt",
+    "category": "Clothing",
+    "price": 599,
+    "stock": 60
+  },
+  {
+    "id": 4,
+    "name": "Denim Jacket",
+    "category": "Clothing",
+    "price": 2499,
+    "stock": 12
+  },
+  {
+    "id": 5,
+    "name": "USB-C Hub",
+    "category": "Accessories",
+    "price": 1899,
+    "stock": 8
+  },
+  {
+    "id": 6,
+    "name": "Laptop Sleeve",
+    "category": "Accessories",
+    "price": 749,
+    "stock": 0
+  },
+  {
+    "id": 7,
+    "name": "Notebook Set",
+    "category": "Stationery",
+    "price": 249,
+    "stock": 120
+  },
+  {
+    "id": 8,
+    "name": "Gel Pen Pack",
+    "category": "Stationery",
+    "price": 149,
+    "stock": 4
+  }
+]
