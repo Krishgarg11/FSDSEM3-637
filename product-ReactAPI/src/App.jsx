@@ -164,7 +164,13 @@ function App() {
             stock insights.
           </p>
         </div>
-        <span className="api-hint">API: {API_BASE}</span>
+
+        <div className="api-actions">
+          <span className="api-hint">API: {API_BASE}</span>
+          <a className="api-link" href={`${API_BASE}/products`} target="_blank" rel="noreferrer">
+            Open product server
+          </a>
+        </div>
       </header>
 
       <section className="stats">
