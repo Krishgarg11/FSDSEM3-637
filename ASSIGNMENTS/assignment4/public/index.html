@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Campus Help Desk | Student Support Portal</title>
+  <meta name="description" content="Campus Help Desk web application for students to submit and manage campus problems and requests." />
+  
+  <!-- Modern Google Font: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  
+  <!-- Custom CSS Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow glow-top-left"></div>
+  <div class="ambient-glow glow-bottom-right"></div>
+
+  <!-- Top App Navigation / Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-badge">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>Campus Help Desk</h1>
+          <p>Student Problem & Request Management System</p>
+        </div>
+      </div>
+
+      <!-- Live Counters -->
+      <div class="header-indicators">
+        <div class="indicator-chip">
+          <span class="chip-pulse"></span>
+          <span class="chip-label">Total Requests:</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div class="indicator-chip chip-urgent">
+          <span class="chip-label">High / Urgent:</span>
+          <strong id="urgentCount">0</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="page-container">
+    <div class="dashboard-grid">
+      
+      <!-- Left Column: Submit New Request Form -->
+      <section class="card form-panel">
+        <div class="card-header">
+          <div class="card-header-icon form-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+            </svg>
+          </div>
+          <div>
+            <h2>Submit a Request</h2>
+            <p class="card-tagline">Report any campus issue or administrative inquiry</p>
+          </div>
+        </div>
+
+        <form id="newRequestForm" class="request-form" novalidate>
+          <!-- Student Name -->
+          <div class="form-field">
+            <label for="studentName">
+              Student Name <span class="required-star">*</span>
+            </label>
+            <div class="field-input-box">
+              <span class="field-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+              </span>
+              <input 
+                type="text" 
+                id="studentName" 
+                name="studentName" 
+                placeholder="e.g. John Doe" 
+                required 
+              />
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-field">
+            <label for="email">
+              Campus Email <span class="required-star">*</span>
+            </label>
+            <div class="field-input-box">
+              <span class="field-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </span>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                placeholder="e.g. john.doe@university.edu" 
+                required 
+              />
+            </div>
+          </div>
+
+          <!-- Category and Priority in Row -->
+          <div class="form-row">
+            <!-- Category -->
+            <div class="form-field">
+              <label for="category">
+                Category <span class="required-star">*</span>
+              </label>
+              <div class="field-input-box">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                  </svg>
+                </span>
+                <select id="category" name="category" required>
+                  <option value="" disabled selected>Select category...</option>
+                  <option value="IT & Wi-Fi Network">IT & Wi-Fi Network</option>
+                  <option value="Academic Support">Academic Support</option>
+                  <option value="Hostel & Housing">Hostel & Housing</option>
+                  <option value="Library Services">Library Services</option>
+                  <option value="Campus Maintenance">Campus Maintenance</option>
+                  <option value="Fee & Accounts">Fee & Accounts</option>
+                  <option value="General Query">General Query</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Priority -->
+            <div class="form-field">
+              <label for="priority">
+                Priority <span class="required-star">*</span>
+              </label>
+              <div class="field-input-box">
+                <span class="field-icon">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                  </svg>
+                </span>
+                <select id="priority" name="priority" required>
+                  <option value="" disabled selected>Select priority...</option>
+                  <option value="Low">Low</option>
+                  <option value="Medium">Medium</option>
+                  <option value="High">High</option>
+                  <option value="Urgent">Urgent</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Problem Description -->
+          <div class="form-field">
+            <label for="description">
+              Problem Description <span class="required-star">*</span>
+            </label>
+            <div class="field-input-box">
+              <textarea 
+                id="description" 
+                name="description" 
+                rows="4" 
+                placeholder="Describe your issue in detail (e.g., Computer Lab 204 printer is displaying paper jam error)..." 
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="form-btn-group">
+            <button type="submit" id="submitBtn" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              <span>Submit Request</span>
+            </button>
+            <button type="reset" id="resetBtn" class="btn btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              <span>Clear</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Right Column: Submitted Requests Display & Management -->
+      <section class="card list-panel">
+        <div class="card-header list-panel-header">
+          <div class="card-header-icon list-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h2>Submitted Requests</h2>
+            <p class="card-tagline">Real-time campus ticket feed & management</p>
+          </div>
+          <button id="refreshBtn" class="btn btn-refresh" title="Refresh request list">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-toolbar">
+          <div class="search-input-wrapper">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="searchInput" 
+              placeholder="Search by student name, email, description, or ID..." 
+            />
+          </div>
+
+          <div class="filter-dropdowns">
+            <select id="categoryFilter" class="select-filter">
+              <option value="ALL">All Categories</option>
+              <option value="IT & Wi-Fi Network">IT & Wi-Fi Network</option>
+              <option value="Academic Support">Academic Support</option>
+              <option value="Hostel & Housing">Hostel & Housing</option>
+              <option value="Library Services">Library Services</option>
+              <option value="Campus Maintenance">Campus Maintenance</option>
+              <option value="Fee & Accounts">Fee & Accounts</option>
+              <option value="General Query">General Query</option>
+            </select>
+
+            <select id="priorityFilter" class="select-filter">
+              <option value="ALL">All Priorities</option>
+              <option value="Urgent">Urgent</option>
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Requests Feed -->
+        <div id="requestsContainer" class="requests-feed">
+          <div class="empty-state">
+            <div class="spinner"></div>
+            <p>Loading requests...</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Edit Request Modal -->
+  <div id="editModal" class="modal-backdrop hidden" aria-hidden="true">
+    <div class="modal-box">
+      <div class="modal-top">
+        <div class="modal-heading">
+          <div class="modal-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 20h9"></path>
+              <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+            </svg>
+          </div>
+          <div>
+            <h3>Edit Campus Request</h3>
+            <p class="modal-info">Updating Request <span id="editModalId">#0</span></p>
+          </div>
+        </div>
+        <button id="closeModalBtn" class="modal-close-btn" aria-label="Close modal">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="editRequestForm" class="request-form" novalidate>
+        <input type="hidden" id="editRequestId" />
+
+        <div class="form-field">
+          <label for="editStudentName">Student Name <span class="required-star">*</span></label>
+          <div class="field-input-box">
+            <input type="text" id="editStudentName" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="editEmail">Campus Email <span class="required-star">*</span></label>
+          <div class="field-input-box">
+            <input type="email" id="editEmail" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="editCategory">Category <span class="required-star">*</span></label>
+            <div class="field-input-box">
+              <select id="editCategory" required>
+                <option value="IT & Wi-Fi Network">IT & Wi-Fi Network</option>
+                <option value="Academic Support">Academic Support</option>
+                <option value="Hostel & Housing">Hostel & Housing</option>
+                <option value="Library Services">Library Services</option>
+                <option value="Campus Maintenance">Campus Maintenance</option>
+                <option value="Fee & Accounts">Fee & Accounts</option>
+                <option value="General Query">General Query</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label for="editPriority">Priority <span class="required-star">*</span></label>
+            <div class="field-input-box">
+              <select id="editPriority" required>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="editDescription">Problem Description <span class="required-star">*</span></label>
+          <div class="field-input-box">
+            <textarea id="editDescription" rows="4" required></textarea>
+          </div>
+        </div>
+
+        <div class="modal-footer-btns">
+          <button type="button" id="cancelModalBtn" class="btn btn-ghost">Cancel</button>
+          <button type="submit" id="saveEditBtn" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+              <polyline points="17 21 17 13 7 13 7 21"></polyline>
+              <polyline points="7 3 7 8 15 8"></polyline>
+            </svg>
+            <span>Save Changes</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-hub" aria-live="polite"></div>
+
+  <!-- JavaScript Frontend Logic -->
+  <script src="script.js"></script>
+</body>
+</html>

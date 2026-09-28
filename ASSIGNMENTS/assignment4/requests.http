@@ -1,0 +1,47 @@
+### Campus Help Desk API - REST Client Test File
+@baseUrl = http://localhost:3000/api/requests
+
+### 1. GET all requests
+GET {{baseUrl}}
+
+### 2. POST create a new request
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentName": "Rahul Sharma",
+  "email": "rahul.sharma@campus.edu",
+  "category": "IT & Wi-Fi Network",
+  "description": "Wi-Fi is not connecting in Library 2nd Floor study lounge.",
+  "priority": "High"
+}
+
+### 3. POST create a second request
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentName": "Ananya Patel",
+  "email": "ananya.patel@campus.edu",
+  "category": "Hostel & Housing",
+  "description": "Hot water geyser in Block B room 304 is malfunctioning.",
+  "priority": "Urgent"
+}
+
+### 4. GET single request by ID
+GET {{baseUrl}}/1
+
+### 5. PUT update request by ID
+PUT {{baseUrl}}/1
+Content-Type: application/json
+
+{
+  "studentName": "Rahul Sharma",
+  "email": "rahul.sharma@campus.edu",
+  "category": "IT & Wi-Fi Network",
+  "description": "Wi-Fi router was rebooted but still intermittent in Library 2nd Floor.",
+  "priority": "Urgent"
+}
+
+### 6. DELETE request by ID
+DELETE {{baseUrl}}/1
