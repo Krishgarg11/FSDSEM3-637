@@ -88,3 +88,5 @@ app.all(
 );
 
 app.listen(4000, () => console.log("GraphQL server on http://localhost:4000/graphql"));
+//admin pass admin123
+//student pass student123
